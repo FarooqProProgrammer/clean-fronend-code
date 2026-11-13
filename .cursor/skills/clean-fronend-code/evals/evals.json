@@ -1,0 +1,83 @@
+{
+  "skill_name": "clean-fronend-code",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Clean this frontend. Refactor evals/files/messy-landing.jsx into a clean structure. Keep brand Acme and the core CTA intent, but fix hero clutter and pointless wrappers.",
+      "expected_output": "Edited landing page: first viewport is brand + one headline + one support line + CTA group + full-bleed/dominant hero (not inset card). No hero overlays, stats strip, or schedule/address clutter in the first viewport. Meaningless SectionWrapper* cards removed or flattened into separate one-function files if kept. Main landing file has only one main function. Dead/unused code removed. Brief before/after summary with file list.",
+      "files": ["evals/files/messy-landing.jsx"],
+      "assertions": [
+        "Edits messy-landing.jsx (or a clear replacement of it) rather than only describing changes",
+        "First viewport keeps Acme brand as a strong signal, one primary headline, one short support line, and a CTA group",
+        "Removes hero overlay badges/chips (promo sticker, live-online callout) from on top of hero media",
+        "Removes first-viewport stats strip and office/hours/address clutter",
+        "Does not keep inset/rounded hero media card as the dominant pattern when a full-bleed or edge-to-edge hero is appropriate",
+        "Removes or collapses SectionWrapper1/SectionWrapper2-style needless card wrappers",
+        "Main landing/page component file contains only one main function (no sibling SectionWrapper* in the same file)",
+        "Removes dead/unused code (unusedFlag, deadConfig, false && legacy branch)",
+        "Removes unused imports in touched files",
+        "Does not expand scope into unrelated new features or documentation files",
+        "Ends with a short summary of what moved/merged/removed"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Tidy components in evals/files/messy-components.jsx — extract shared UI, drop useless wrappers and hooks, remove duplication.",
+      "expected_output": "One main function per file: FeaturesRow alone in its file; any FeatureItem/BoxThing extracted to its own file. WrapperA/WrapperB and FeaturesRowCopy duplication gone. Unnecessary useMemo/useCallback removed. Unused props removed. Behavior/copy preserved.",
+      "files": ["evals/files/messy-components.jsx"],
+      "assertions": [
+        "Edits messy-components.jsx (and/or splits into separate component files) rather than only describing changes",
+        "Eliminates duplicated FeaturesRow / FeaturesRowCopy (or merges into one export)",
+        "Removes WrapperA/WrapperB (or equivalent no-op wrappers)",
+        "Each remaining main component file has only one main function",
+        "Removes unnecessary useMemo/useCallback for trivial values/handlers",
+        "Removes unused imports left after dropping hooks/wrappers (e.g. useMemo, useCallback)",
+        "Removes unusedProp and duplicated body rendering",
+        "Preserves the three feature titles and bodies",
+        "Does not add README or unrelated files"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Refactor this page — but plan only, don't edit yet. Look at evals/files/messy-landing.jsx and tell me the map and cleanup plan.",
+      "expected_output": "Stops after map + plan. Lists current structure (entry, wrappers, hero issues, dead code). Proposes splits/merges/naming. Does not modify files.",
+      "files": ["evals/files/messy-landing.jsx"],
+      "assertions": [
+        "Produces a structure map (entry file, wrappers, sections, dead code)",
+        "Proposes a concrete cleanup plan (splits/merges/naming or equivalent)",
+        "Calls out hero clutter and needless cards as problems",
+        "Does not modify messy-landing.jsx or write replacement implementation files",
+        "Waits for go-ahead rather than applying the refactor"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Tidy components in evals/files/messy-types.tsx — move all interfaces and types into ./src/types/** and update imports.",
+      "expected_output": "No interface/type/enum left inline in component files. Types under src/types/**. FeaturesRow and PricingCard each live in their own file with only one main function. Nested interface inside PricingCard is extracted too.",
+      "files": ["evals/files/messy-types.tsx"],
+      "assertions": [
+        "Creates one or more files under src/types/** for FeatureItem, FeaturesRowProps, FeatureTone, Price, PricingCardProps (or equivalent names)",
+        "Removes top-level and nested interface/type/enum declarations from the component file(s)",
+        "Component file(s) import types from src/types/... paths",
+        "Splits FeaturesRow and PricingCard so each main component file has only one main function",
+        "Preserves FeaturesRow and PricingCard runtime behavior and displayed copy",
+        "Does not leave types co-located beside the component as the final layout"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Clean CSS in evals/files/messy-styles.jsx — reusable styling must be separate shared classes, not duplicated inline styles. Follow clean-css.md.",
+      "expected_output": "Duplicated Save/Publish button styles become one shared class (e.g. btn-primary). Near-duplicate Docs control uses shared base + modifier or a second named class. Duplicated body text styles become a shared text class. Inline style objects removed for those repeated looks. One main function remains in the component file. Unused CSS/imports cleaned.",
+      "files": ["evals/files/messy-styles.jsx"],
+      "assertions": [
+        "Reads or follows clean-css.md reusable-class guidance",
+        "Extracts repeated primary button styles into a separate shared class used by Save and Publish",
+        "Does not leave identical inline style objects duplicated on multiple elements",
+        "Extracts repeated body text styles into a shared class",
+        "Docs control uses a named class (shared base + modifier or distinct class), not a one-off anonymous inline dump of the same tokens",
+        "Component file keeps only one main function",
+        "Removes unused imports if any appear after the cleanup"
+      ]
+    }
+  ]
+}
